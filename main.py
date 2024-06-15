@@ -25,6 +25,23 @@ def delete_todo(number):
 
     with open('TODOs.txt', 'w') as file:
         file.write(''.join(todos))
+    renumber_todos()
+
+
+def renumber_todos():
+    with open('TODOs.txt', 'r') as file:
+        lines = file.readlines()
+
+    num_todos = count_todos()
+    new_lines = []
+    for i, line in enumerate(lines, start=1):
+        if line.strip().startswith(str(i) + '.'):
+            new_lines.append(line)
+        else:
+            new_lines.append(f'{i}. {line.strip()[2:]}\n')
+
+    with open('TODOs.txt', 'w') as file:
+        file.write(''.join(new_lines))
 
 
 def load_todos():
