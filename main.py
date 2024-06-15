@@ -8,8 +8,12 @@ def add_todo(data):
 
 
 def count_todos():
+    todo_count = 0
     with open('TODOs.txt', 'r') as file:
-        return sum(1 for _ in file)
+        for line in file:
+            if line.strip().startswith(str(todo_count + 1) + '.'):
+                todo_count += 1
+    return todo_count
 
 
 def delete_todo(number):
