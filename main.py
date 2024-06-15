@@ -3,8 +3,11 @@ import os
 
 def add_todo(data):
     num_todos = count_todos()
-    with open('TODOs.txt', 'a') as file:
-        file.write(f'\n{num_todos + 1}. {data}')
+    with open('TODOs.txt', 'w') as file:
+        file.write(f'{num_todos + 1}. {data}\n')
+        with open('TODOs.txt', 'r') as read_file:
+            for line in read_file:
+                file.write(line)
 
 
 def count_todos():
