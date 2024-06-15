@@ -2,9 +2,14 @@ import os
 
 
 def add_todo(data):
+    num_todos = count_todos()
     with open('TODOs.txt', 'a') as file:
-        num_todos = sum(1 for _ in file)
         file.write(f'\n{num_todos + 1}. {data}')
+
+
+def count_todos():
+    with open('TODOs.txt', 'r') as file:
+        return sum(1 for _ in file)
 
 
 def delete_todo(number):
