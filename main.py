@@ -44,8 +44,12 @@ def renumber_todos():
 
 
 def load_todos():
-    with open('TODOs.txt', 'r') as file:
-        return file.read()
+    if(not os.path.exists('TODOs.txt')):
+        return print('No TODOs found. Please add some.')
+
+    else:
+        with open('TODOs.txt', 'r') as file:
+            return file.read()
 
 
 choice = input('What do you want to do? N/L/D (New/Load/Delete): ')
